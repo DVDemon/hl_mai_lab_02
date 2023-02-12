@@ -1,0 +1,283 @@
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Arch Lab Example API'
+  description: Пример API для первого домашнего задания по курсу Архитектура программных систем
+servers:
+  - url: http://localhost:8080
+    description: Sample server
+paths:
+  /search:
+    get:
+      summary: Search authors by mask of first name and last name
+      parameters:
+      - name: first_name
+        description: Имя
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: last_name
+        description: Фамилия
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The authors corresponding to the provided masks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authors'
+        404:
+          description: No author found for the provided mask
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /author:
+    get:
+      summary: Read a author information
+      parameters:
+      - name: id
+        description: Уникальный идентификатор автора
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/author_id'
+      responses:
+        '200':
+          description: The author corresponding to the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/author'
+        404:
+          description: No author found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Add author information
+      parameters:
+      - name: first_name
+        description: Имя автора
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: last_name
+        description: Фамилия автора
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: email
+        description: email автора
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: title
+        description: Форма обращение к автору 
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Идентификатор, добавленного автора
+          content:
+            application/json:
+              schema:
+                type: integer
+        404:
+          description: No author found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /message:
+    get:
+      summary: Read a messages
+      parameters:
+      - name: id_from
+        description: Уникальный идентификатор автора отправителя сообщений
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/author_id'
+      - name: id_to
+        description: Уникальный идентификатор автора получателя сообщений
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/author_id'
+      responses:
+        '200':
+          description: Сообщения между авторами
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/author'
+        404:
+          description: No author found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messages'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Send message
+      parameters:
+      - name: id_from
+        description: id автора - отправителя сообщения
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: id_to
+        description: id автора - получателя сообщения
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: message
+        description: сообщение
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Идентификатор, добавленного сообщения
+          content:
+            application/json:
+              schema:
+                type: integer
+        404:
+          description: No author found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /contacts:
+    get:
+      summary: Read a messages
+      parameters:
+      - name: contact_id
+        description: Уникальный идентификатор автора для которого ищем контакты
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/author_id'
+      responses:
+        '200':
+          description: Контакты автора
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contacts'
+        404:
+          description: No author found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messages'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'              
+components:
+  schemas:
+    author_id:
+      description: Уникальный идентификатор автора
+      type: integer
+    authors:
+      type: array
+      items:
+        $ref: '#/components/schemas/author'
+    contacts:
+      type: array
+      items:
+        $ref: '#/components/schemas/contact'
+    contact:
+      type: object
+      properties:
+        id:
+          type: string
+    messages:
+      type: array
+      items:
+        $ref: '#/components/schemas/message'
+    message:
+      type: object
+      properties:
+        id:
+          type: string
+        id_from:
+          type: string
+        id_to:
+          type: string
+        message:
+          type: string
+    author:
+      type: object
+      required:
+        - id
+        - first_name
+        - last_name
+        - email
+        - title
+      properties:
+        id:
+          $ref: '#/components/schemas/author_id'
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        title:
+          type: string
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: A human readable error message
+          type: string
