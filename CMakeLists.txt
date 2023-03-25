@@ -18,7 +18,7 @@ include_directories(${Poco_INCLUDE_DIRS})
 add_executable(${EXAMPLE_BINARY} main.cpp 
                                  config/config.cpp 
                                  database/database.cpp
-                                 database/author.cpp
+                                 database/user.cpp
                                  database/message.cpp)
 
 

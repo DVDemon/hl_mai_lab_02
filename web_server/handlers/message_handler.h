@@ -56,7 +56,6 @@ public:
                        HTTPServerResponse &response)
     {
         HTMLForm form(request, request.stream());
-
         if (form.has("id_from") && form.has("id_to")  && (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET))
         {
             long id_from = atol(form.get("id_from").c_str());
@@ -84,6 +83,7 @@ public:
         }
         else if (form.has("contact_id") && (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET))
         {
+            std::cout << "process contact request" << std::endl;
             long id = atol(form.get("contact_id").c_str());
             try
             {
@@ -125,10 +125,9 @@ public:
         }
         else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_POST)
         {
-            if (form.has("id_from"))
-                if (form.has("id_to"))
-                    if (form.has("message"))
+            if (form.has("id_from")&&form.has("id_to")&&form.has("message"))
                     {
+                        std::cout << "add message" << std::endl;
                         database::Message message;
                         message.id_from() = atol(form.get("id_from").c_str());
                         message.id_to() = atol(form.get("id_to").c_str());

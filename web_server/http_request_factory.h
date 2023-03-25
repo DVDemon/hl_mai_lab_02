@@ -38,14 +38,10 @@ using Poco::Util::OptionCallback;
 using Poco::Util::OptionSet;
 using Poco::Util::ServerApplication;
 
-#include "handlers/author_handler.h"
+#include "handlers/user_handler.h"
 #include "handlers/message_handler.h"
 #include "handlers/web_page_handler.h"
 
-static bool startsWith(const std::string &str, const std::string &prefix)
-{
-    return str.size() >= prefix.size() && 0 == str.compare(0, prefix.size(), prefix);
-}
 
 class HTTPRequestFactory : public HTTPRequestHandlerFactory
 {
@@ -57,17 +53,17 @@ public:
     HTTPRequestHandler *createRequestHandler(
         const HTTPServerRequest &request)
     {
-        static const std::string author = "/author";
-        static const std::string message = "/message";
-        static const std::string contacts = "/contacts";
-        if (startsWith(request.getURI(), author))
-            return new AuthorHandler(_format);
-        if (startsWith(request.getURI(), message))
+
+        if (hasSubstr(request.getURI(),"/user") ||
+            hasSubstr(request.getURI(),"/search") ||
+            hasSubstr(request.getURI(),"/auth")) 
+            return new UserHandler(_format);
+
+        if (hasSubstr(request.getURI(), "/message")||
+            hasSubstr(request.getURI(), "/contacts"))
             return new MessageHandler(_format);
-        if (startsWith(request.getURI(), contacts))
-            return new MessageHandler(_format);
+        
         return new WebPageHandler(_format);
-        return 0;
     }
 
 private:

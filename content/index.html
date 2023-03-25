@@ -72,16 +72,20 @@
             var xhr = new XMLHttpRequest();
 
             document.getElementById("contact_list").innerHTML = "";
-            xhr.open("GET", "message?id=" + id_from, true);
+            xhr.open("GET", "contacts?contact_id=" + id_from, true);
             xhr.send();
+
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
+                    
                     var jsonData = xhr.responseText;
+                    
 
                     var jsObject = JSON.parse(jsonData);
                     var length = jsObject.length;
                     var text = "<ul id='suggestion-list'>";
+                    
                     for (var i = 0; i < length; i++){
                         var msg= jsObject[i]
                         text += "<li onClick=\"set_contact("+ msg.id +")\">" + msg.id + "</li>";
@@ -133,14 +137,14 @@
             var my_msg = encodeURIComponent(document.getElementById("message").value);
             var xhr = new XMLHttpRequest();
 
-            xhr.open("GET", "message?id_from=" + id_from+"&id_to="+id_to+"&message="+my_msg+"&add", true);
-            xhr.send();
-
+            xhr.open("POST", "message", true);           
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     messages();
                 }
             }
+
+            xhr.send("id_from=" + id_from+"&id_to="+id_to+"&message="+my_msg);
         };
     </script>
 </head>
