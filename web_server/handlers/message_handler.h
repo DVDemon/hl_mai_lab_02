@@ -83,7 +83,6 @@ public:
         }
         else if (form.has("contact_id") && (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET))
         {
-            std::cout << "process contact request" << std::endl;
             long id = atol(form.get("contact_id").c_str());
             try
             {
