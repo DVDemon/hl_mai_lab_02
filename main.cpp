@@ -75,7 +75,8 @@ protected:
 
     int main([[maybe_unused]] const std::vector<std::string> &args)
     {
-            database::User::init();            
+            database::User::init();    
+            database::Message::init();            
             ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8080));
             HTTPServer srv(new HTTPRequestFactory(DateTimeFormat::SORTABLE_FORMAT), svs, new HTTPServerParams);
             srv.start();

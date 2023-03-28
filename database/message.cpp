@@ -90,6 +90,8 @@ namespace database
                         << "PRIMARY KEY (id),KEY ft (id_from,id_to));"
                         << hint,
                         now;
+
+             std::cout << create_stmt.toString() << std::endl;
             }
         }
 
