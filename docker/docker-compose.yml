@@ -22,6 +22,10 @@ services:
       - 3360:3306
     volumes:
       - db-node-1-data:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mariadb --user=stud --password=stud --execute \"SHOW DATABASES;\""
+      timeout: 20s
+      retries: 5
 
   db-node-2:
     build:
@@ -44,6 +48,10 @@ services:
       - 3361:3306
     volumes:
       - db-node-2-data:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mariadb --user=stud --password=stud --execute \"SHOW DATABASES;\""
+      timeout: 20s
+      retries: 5
 
   db-node-3:
     build:
@@ -66,6 +74,11 @@ services:
       - 3362:3306
     volumes:
       - db-node-3-data:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mariadb --user=stud --password=stud --execute \"SHOW DATABASES;\""
+      timeout: 20s
+      retries: 5
+
       
   proxysql:
     build:
@@ -80,11 +93,6 @@ services:
       test: "/usr/bin/mysql --user=stud --password=stud --execute \"SHOW DATABASES;\""
       timeout: 20s
       retries: 5
-    depends_on:
-      - db-node-1
-      - db-node-2
-      - db-node-3
-      
     networks:
       - arch-network
     ports:
@@ -92,7 +100,11 @@ services:
       - "6033:6033"
       # Mysql Admin Port
       - "6032:6032"
-
+    depends_on:
+      - db-node-1
+      - db-node-2
+      - db-node-3
+      
   my_service:
     build:
       context: my_service
@@ -104,17 +116,14 @@ services:
       - DB_LOGIN=stud
       - DB_PASSWORD=stud
       - DB_DATABASE=archdb
+    restart: unless-stopped
     ports:
       - 8080:8080
     networks:
       - arch-network
     depends_on:
       - proxysql
-      - db-node-1
-      - db-node-2
-      - db-node-3
-      # proxysql:
-      #   condition: service_healthy
+        
 
 volumes:
   db-node-1-data:
@@ -125,4 +134,3 @@ volumes:
 networks:
   arch-network:
     driver: "bridge"
-    external: false

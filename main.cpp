@@ -75,8 +75,10 @@ protected:
 
     int main([[maybe_unused]] const std::vector<std::string> &args)
     {
-            database::User::init();    
-            database::Message::init();            
+            database::User::init(); 
+            std::cout << "[Ok] Init Users" << std::endl;     
+            database::Message::init();  
+            std::cout << "[Ok] Init Messages" << std::endl;          
             ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8080));
             HTTPServer srv(new HTTPRequestFactory(DateTimeFormat::SORTABLE_FORMAT), svs, new HTTPServerParams);
             srv.start();
