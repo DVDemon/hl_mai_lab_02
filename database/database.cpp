@@ -32,6 +32,12 @@ namespace database{
         return result;
     }
 
+    std::string Database::sharding_user([[maybe_unused]] long id){
+        std::string result = "-- sharding:";
+        result += std::to_string(0);
+        return result;
+    }
+
     std::string Database::sharding_hint(long from, long to){
 
         std::string key;

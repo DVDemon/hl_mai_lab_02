@@ -119,7 +119,10 @@ namespace database
             Poco::Data::Session session = database::Database::get().create_session();
             Poco::Data::Statement select(session);
             User a;
-            select << "SELECT id, first_name, last_name, email, title,login,password FROM User where id=?",
+            std::string sharding_hint = database::Database::sharding_user(id);
+            std::string sql = "SELECT id, first_name, last_name, email, title,login,password FROM User where id=? "+sharding_hint; 
+            std::cout << sql << std::endl;
+            select << sql,
                 into(a._id),
                 into(a._first_name),
                 into(a._last_name),
@@ -130,9 +133,15 @@ namespace database
                 use(id),
                 range(0, 1); //  iterate over result set one row at a time
 
+            std::cout << "SQL executed:";
             select.execute();
             Poco::Data::RecordSet rs(select);
-            if (rs.moveFirst()) return a;
+            if (rs.moveFirst()) {
+                std::cout << " record found" << std::endl;
+                return a;
+            } else {
+                std::cout << " no record found" << std::endl;
+            }
         }
 
         catch (Poco::Data::MySQL::ConnectionException &e)
@@ -144,6 +153,9 @@ namespace database
 
             std::cout << "statement:" << e.what() << std::endl;
             
+        }
+        catch(std::exception &ex){
+            std::cout << "Unknown exception:" << ex.what() << std::endl;
         }
         return {};
     }
