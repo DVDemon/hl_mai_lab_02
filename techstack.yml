@@ -1,7 +1,8 @@
 repo_name: DVDemon/hl_mai_lab_02
-report_id: 3ec5551d3fe7da2e27b2eefcc371668d
+report_id: 31fbddd264abec592c7e602d102bbe0a
+version: 0.1
 repo_type: Public
-timestamp: '2023-12-14T10:13:05+00:00'
+timestamp: '2024-01-05T08:57:55+00:00'
 requested_by: DVDemon
 provider: github
 branch: main
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1049/cplusplus.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02
   detection_source: Repo Metadata
 - name: SQL
   description: It is a domain-specific language used in programming
@@ -25,6 +27,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/2271/default_068d33483bba6b81ee13fbd4dc7aab9780896a54.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/commands.sql
   detection_source: commands.sql
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -37,6 +40,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/docker/docker-compose.yml
   detection_source: docker/docker-compose.yml
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -48,6 +52,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1025/logo-mysql-170x170.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/docker/docker-compose.yml
   detection_source: docker/docker-compose.yml
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -59,6 +64,7 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/CMakeLists.txt
   detection_source: CMakeLists.txt
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -70,6 +76,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Java Build Tools
   image_url: https://img.stackshare.io/service/2424/0UlUI_y1_400x400.jpg
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02
   detection_source: Repo Metadata
 - name: Docker
   description: Enterprise Container Platform for High-Velocity Innovation.
@@ -80,6 +87,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -89,6 +97,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02
   detection_source: Repo Metadata
 - name: HTML
   description: Hypertext Markup Language for creating web pages.
@@ -96,6 +105,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/2270/no-img-open-source.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/content/index.html
   detection_source: content/index.html
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -107,6 +117,7 @@ tools:
   category: Communications
   sub_category: Large Language Model Tools
   image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/CMakeLists.txt
   detection_source: CMakeLists.txt
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
@@ -119,6 +130,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02
   detection_source: Repo Metadata
 - name: Ubuntu
   description: The leading OS for PC, tablet, phone and cloud
@@ -128,6 +140,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
+  detection_source_url: https://github.com/DVDemon/hl_mai_lab_02/blob/main/docker/my_service/Dockerfile
   detection_source: docker/my_service/Dockerfile
   last_updated_by: Dmitriy Dzyuba
   last_updated_on: 2023-02-12 10:32:59.000000000 Z
